@@ -38,6 +38,10 @@ class Server extends EventEmitter {
       socket.headers = request.headers
     }
 
+    if (request && request.method) {
+      socket.method = request.method
+    }
+
     if (request && request.url) {
       socket.url = request.url
     }
