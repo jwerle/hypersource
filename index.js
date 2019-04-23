@@ -116,9 +116,9 @@ function connect(port, host, callback) {
   return null
 }
 
-module.exports = {
+module.exports = Object.assign(createServer, {
   createServer,
   connect,
-  Socket,
   Server,
-}
+  Socket,
+})
