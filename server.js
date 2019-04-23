@@ -165,10 +165,10 @@ class Server extends EventEmitter {
     if ('wss:' === protocol && !opts.server) {
       const httpsServer = https.createServer(this.opts)
       opts.server = httpsServer
-      httpsServer.listen(opts.port, opts.host)
     }
 
     if (opts.server) {
+      opts.server.listen(opts.port, opts.host)
       // delete 'opts.host' and 'opts.port' so `WebSocketServer
       // does not start listening when these properties are present
       // and the http server is supplied
