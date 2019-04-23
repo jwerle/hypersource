@@ -1,0 +1,43 @@
+{
+  "name": "hypersource",
+  "version": "0.0.1",
+  "description": "Build WebSocket APIs that leverage the HyperCore Protocol",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "websocket",
+    "service",
+    "api",
+    "hypercore",
+    "protocol"
+  ],
+  "author": "Joseph Werle <joseph.werle@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "hypercore-crypto": "^1.0.0",
+    "hypercore-protocol": "^6.9.0",
+    "ip": "^1.1.5",
+    "pump": "^3.0.0",
+    "simple-websocket": "^7.2.0"
+  },
+  "devDependencies": {
+    "hypercore": "^6.26.0",
+    "hyperdrive": "^9.14.5",
+    "random-access-memory": "^3.1.1",
+    "tape": "^4.10.1"
+  },
+  "directories": {
+    "example": "example"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jwerle/hypersource.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jwerle/hypersource/issues"
+  },
+  "homepage": "https://github.com/jwerle/hypersource#readme"
+}
