@@ -1,5 +1,5 @@
-const hypercore = require('hypercore')
 const WebSocket = require('simple-websocket')
+const hypercore = require('hypercore')
 const pump = require('pump')
 const ram = require('random-access-memory')
 
