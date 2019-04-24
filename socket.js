@@ -37,6 +37,7 @@ class Socket extends WebSocket {
     this.userData = opts.userData || null
     this.download = 'boolean' === typeof opts.download ? opts.download : true
     this.encrypt = 'boolean' === typeof opts.encrypt ? opts.encrypt : true
+    this.timeout = opts.timeout || 5000
     this.upload = 'boolean' === typeof opts.upload ? opts.upload : true
     this.stream = opts.stream || null
     this.live = 'boolean' === typeof opts.live ? opts.live : true
@@ -110,6 +111,11 @@ class Socket extends WebSocket {
 
       pump(this, this.stream, this)
     }
+  }
+
+  setTimeout(timeout) {
+    this.timeout = timeout
+    return this
   }
 }
 
