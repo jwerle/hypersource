@@ -17,14 +17,17 @@ test('hs.createServer(onrequest) basic test', (t) => {
       const writer = hypercore(ram, res.key, { secretKey: res.secretKey })
 
       reader.replicate(req)
-      writer.replicate(res)
 
       writer.once('upload', () => {
         t.pass('writer uploads')
         res.destroy()
       })
 
-      reader.get(0, (err, buf) => writer.append(buf))
+      reader.get(0, (err, buf) => {
+        writer.append(buf, () => {
+          setTimeout(() => writer.replicate(res), 1000 * Math.random())
+        })
+      })
     })
 
     server.listen(0, (err) => {
@@ -42,10 +45,12 @@ test('hs.createServer(onrequest) basic test', (t) => {
         const remotePublicKey = stream.remoteUserData
         const response = hypercore(ram, remotePublicKey)
 
-        request.append('hello world')
+        const buf = Buffer.alloc(612444 * 2)
+        buf.fill(Buffer.from('hello world'))
+        request.append(buf)
         response.replicate({ stream, live: true })
         response.get(0, (err, res) => {
-          t.equal('hello world', res.toString())
+          t.ok(0 === Buffer.compare(buf, res))
           socket.destroy()
           server.close()
           t.end()
