@@ -60,10 +60,6 @@ class Socket extends WebSocket {
 
     this.once('connect', this.onconnect)
 
-    if (this.stream) {
-      process.nextTick(pump, this, this.stream, this)
-    }
-
     if (opts.socket && 'function' === typeof opts.socket.send) {
       process.nextTick(() => this._onOpen())
     }
@@ -107,9 +103,9 @@ class Socket extends WebSocket {
     if (!this.stream) {
       this.stream = Protocol({
         userData: this.userData,
-        download: true,
-        upload: true,
-        live: true,
+        download: this.download,
+        upload: this.upload,
+        live: this.live,
       })
 
       pump(this, this.stream, this)
