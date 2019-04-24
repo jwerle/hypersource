@@ -1,6 +1,6 @@
 {
   "name": "hypersource",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Build WebSocket APIs that leverage the HyperCore Protocol",
   "main": "index.js",
   "scripts": {
