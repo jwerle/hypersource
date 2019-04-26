@@ -178,6 +178,7 @@ class Server extends EventEmitter {
     //opts.clientTracking = true
     this.protocol = protocol
     this.server = new WebSocketServer(opts)
+    this.server.setMaxListeners(0)
 
     if ('function' === typeof callback) {
       this.server.once('error', callback)
