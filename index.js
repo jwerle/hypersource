@@ -1,5 +1,6 @@
 const { Server } = require('./server')
 const { Socket } = require('./socket')
+const url = require('url')
 
 function createServer(opts, onrequest) {
   if ('function' === typeof opts) {

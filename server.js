@@ -4,6 +4,7 @@ const { Socket } = require('./socket')
 const crypto = require('hypercore-crypto')
 const https = require('https')
 const pump = require('pump')
+const url = require('url')
 
 class Server extends EventEmitter {
   constructor(opts) {
@@ -68,8 +69,6 @@ class Server extends EventEmitter {
         res.discoveryKey = discoveryKey
 
         this.emit('request', req, res, discoveryKey)
-
-        req.writable = true
       })
     })
   }
@@ -158,7 +157,7 @@ class Server extends EventEmitter {
       }
       const uri = url.parse(opts.host)
       opts.host = uri.hostname
-      opts.port = parseInt(uri.port)
+      opts.port = parseInt(uri.port) || port
       protocol = uri.protocol
     }
 
